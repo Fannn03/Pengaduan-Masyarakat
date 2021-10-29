@@ -6,6 +6,10 @@
             <div class="bg-green-500 p-3 rounded-md">
                 {{ session('register') }}
             </div>
+        @elseif (session('login'))
+        <div class="bg-red-500 p-3 rounded-md">
+            {{ session('login') }}
+        </div>
         @endif
         <form action="{{ route('login') }}" method="POST" class="flex flex-col sm:px-3 sm:space-y-5">
             @csrf

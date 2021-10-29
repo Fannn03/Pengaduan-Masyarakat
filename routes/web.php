@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index')->middleware('guest');
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::middleware('guest')->group(function(){
     Route::get('/login', [LoginController::class, 'view'])->name('login');
@@ -28,6 +29,9 @@ Route::middleware('guest')->group(function(){
 });
 
 Route::middleware(['auth'])->group(function (){
+    Route::get('/logout', [LogoutController::class, 'logoutGet']);
+    Route::post('/logout',[LogoutController::class, 'logout'])->name('logout');
+
     Route::prefix('dashboard')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');
     });

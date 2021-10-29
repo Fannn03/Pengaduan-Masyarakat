@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -28,8 +29,12 @@ class LoginController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages)->validate();
 
-        if (!$validator) {
-            return 'salah tod';
+        if (Auth::attempt($validator)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/');
+        }else{
+            return redirect()->route('login')->withInput()->with('login', 'Username atau password salah');
         }
 
     }
