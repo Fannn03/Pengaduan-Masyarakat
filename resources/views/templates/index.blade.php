@@ -19,7 +19,7 @@
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Tentang Kami</a>
             @endif
             <a href="{{ route('login') }}" class="text-xl transition duration-300 hover:text-purple-500">Login</a>
-            <a href="" class="text-xl transition duration-300 hover:text-purple-500">Register</a>
+            <a href="{{ route('register') }}" class="text-xl transition duration-300 hover:text-purple-500">Register</a>
         </div>
     </div>
     @yield('content')  
