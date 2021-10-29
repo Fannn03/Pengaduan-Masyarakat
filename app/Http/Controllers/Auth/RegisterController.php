@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -34,11 +35,20 @@ class RegisterController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages)->validate();
 
-        if ($validator) {
-            return "benarrr";
-        }else{
-            return redirect(route('register'));
+        if (!$validator) {
+            return redirect(route('register'));   
         }
+
+        $user = User::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'jabatan' => 'masyarakat',
+            'aktivasi' => false,
+        ]);
+
+        return redirect(route('login'))->with('register', 'Akun anda berhasil dibuat, silahkan cek email anda untuk aktivasi akun');
 
     }
 }
