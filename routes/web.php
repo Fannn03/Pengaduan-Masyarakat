@@ -21,4 +21,6 @@ Route::get('/', [IndexController::class, 'index'])->name('index')->middleware('g
 Route::middleware('guest')->group(function(){
     Route::get('/login', [LoginController::class, 'view'])->name('login');
     Route::get('/register', [RegisterController::class, 'view'])->name('register');
+
+    Route::post('/register', [RegisterController::class, 'store']);
 });
