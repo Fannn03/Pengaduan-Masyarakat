@@ -6,21 +6,21 @@
         @csrf
         <div class="flex flex-col sm:space-y-3">
             <p class="text-xl">Nama lengkap</p>
-            <input type="text" name="nama" class="@error('nama') border-red-500 border-2 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autofocus autocomplete="off" id="">
+            <input type="text" name="nama" value="{{ old('nama') }}" class="@error('nama') border-red-500 border-2 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autofocus autocomplete="off" id="">
             @error('nama')
                 <p class="text-red-500">{{ $message }}</p>
             @enderror
         </div>
         <div class="flex flex-col sm:space-y-3">
             <p class="text-xl">Username</p>
-            <input type="text" name="username" class="@error('username') border-red-500 border-2 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autocomplete="off" id="">
+            <input type="text" name="username" value="{{ old('username') }}" class="@error('username') border-red-500 border-2 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autocomplete="off" id="">
             @error('username')
                 <p class="text-red-500">{{ $message }}
             @enderror
         </div>
         <div class="flex flex-col sm:space-y-3">
             <p class="text-xl">Email</p>
-            <input type="text" name="email" class="@error('email') border-red-500 border-2 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autocomplete="off" id="">
+            <input type="text" name="email" value="{{ old('email') }}" class="@error('email') border-red-500 border-2 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autocomplete="off" id="">
             @error('email')
                 <p class="text-red-500">{{ $message }}
             @enderror
