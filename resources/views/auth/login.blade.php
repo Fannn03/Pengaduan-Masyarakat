@@ -7,14 +7,21 @@
                 {{ session('register') }}
             </div>
         @endif
-        <form action="" method="POST" class="flex flex-col sm:px-3 sm:space-y-5">
+        <form action="{{ route('login') }}" method="POST" class="flex flex-col sm:px-3 sm:space-y-5">
+            @csrf
             <div class="flex flex-col sm:space-y-3">
                 <p class="text-xl">Username</p>
-                <input type="text" name="username" class="w-full border rounded sm:px-3 sm:py-2 text-black" autofocus autocomplete="off" id="">
+                <input type="text" value="{{ old('username') }}" name="username" class="@error('username') border-2 border-red-500 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autofocus autocomplete="off" id="">
+            @error('username')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
             </div>
             <div class="flex flex-col sm:space-y-3">
                 <p class="text-xl">Password</p>
-                <input type="password" name="password" class="w-full border rounded sm:px-3 sm:py-2 text-black" autocomplete="off" id="">
+                <input type="password" name="password" class="@error('username') border-2 border-red-500 @enderror w-full rounded sm:px-3 sm:py-2 text-black" autocomplete="off" id="">
+            @error('password')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
             </div>
             <div class="flex flex-col sm:space-y-3">
             <a href="{{ route('register') }}" class="underline text-center transition duration-300 hover:text-purple-500">Belum punya akun?</a>
