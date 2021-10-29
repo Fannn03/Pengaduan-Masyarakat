@@ -2,6 +2,11 @@
 @section('content')
     <div class="sm:container-md sm:w-1/2 sm:mx-auto sm:my-10 border p-10 font-sans flex flex-col sm:space-y-5 text-gray-100 rounded-md">
         <h1 class="sm:text-2xl border-b pb-3">Halaman Login</h1>
+        @if (session('register'))
+            <div class="bg-green-500 p-3 rounded-md">
+                {{ session('register') }}
+            </div>
+        @endif
         <form action="" method="POST" class="flex flex-col sm:px-3 sm:space-y-5">
             <div class="flex flex-col sm:space-y-3">
                 <p class="text-xl">Username</p>
