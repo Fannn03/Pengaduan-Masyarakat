@@ -14,8 +14,8 @@
         </div>
         <div class="hidden sm:flex sm:space-x-5 sm:px-5">
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Home</a>
-            <a href="" class="text-xl transition duration-300 hover:text-purple-500">Tentang Kami</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Layanan</a>
+            <a href="" class="text-xl transition duration-300 hover:text-purple-500">Tentang Kami</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Login</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Register</a>
         </div>
