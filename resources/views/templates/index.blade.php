@@ -8,7 +8,7 @@
     <title>Pengaduan Masyarakat | Index Page</title>
 </head>
 <body class="bg-gray-800 font-mono">
-    <div class="container-md sm:p-10 py-8 px-5 flex justify-between text-white bg-gray-800">
+    <div class="container-md sm:p-10 py-8 px-5 flex sticky top-0 z-50 justify-between text-white bg-gray-800">
         <div class="flex px-5">
             <a href="{{ route('index') }}" class="sm:text-2xl text-xl transition duration-300 hover:text-purple-500">Pengaduan Masyarakat</a >
         </div>
@@ -18,8 +18,12 @@
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Layanan</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Tentang Kami</a>
             @endif
-            <a href="{{ route('login') }}" class="text-xl transition duration-300 hover:text-purple-500">Login</a>
-            <a href="{{ route('register') }}" class="text-xl transition duration-300 hover:text-purple-500">Register</a>
+            @auth
+                <a href="">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="text-xl transition duration-300 hover:text-purple-500">Login</a>  
+                <a href="{{ route('register') }}" class="text-xl transition duration-300 hover:text-purple-500">Register</a>    
+            @endauth
         </div>
     </div>
     @yield('content')  
