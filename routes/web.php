@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/', [IndexController::class, 'index'])->name('index')->middleware('activate');
 
 Route::middleware('guest')->group(function(){
     Route::get('/login', [LoginController::class, 'view'])->name('login');
