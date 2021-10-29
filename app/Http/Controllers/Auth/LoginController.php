@@ -10,7 +10,13 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     public function view(){
-        return view('auth.login');
+
+        $data = [
+            'title' => 'Login Page'
+        ];
+
+        return view('auth.login')->with($data);
+        
     }
 
     public function login(Request $request){

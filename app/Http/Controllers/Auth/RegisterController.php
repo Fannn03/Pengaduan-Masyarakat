@@ -11,7 +11,13 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function view(){
-        return view('auth.register');
+
+        $data = [
+            'title' => 'Register Page'
+        ];
+
+        return view('auth.register')->with($data);
+
     }
 
     public function store(Request $request){
