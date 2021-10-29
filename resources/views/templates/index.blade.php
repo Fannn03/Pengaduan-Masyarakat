@@ -13,10 +13,12 @@
             <a href="{{ route('index') }}" class="sm:text-2xl text-xl transition duration-300 hover:text-purple-500">Pengaduan Masyarakat</a >
         </div>
         <div class="hidden sm:flex sm:space-x-5 sm:px-5">
+            @if (request()->routeIs('index'))
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Home</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Layanan</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Tentang Kami</a>
-            <a href="" class="text-xl transition duration-300 hover:text-purple-500">Login</a>
+            @endif
+            <a href="{{ route('login') }}" class="text-xl transition duration-300 hover:text-purple-500">Login</a>
             <a href="" class="text-xl transition duration-300 hover:text-purple-500">Register</a>
         </div>
     </div>
