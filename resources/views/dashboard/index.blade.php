@@ -16,6 +16,8 @@
     <!-- component -->
     @if (Auth::user()->jabatan == 'masyarakat')
         <x-dashboard-masyarakat></x-dashboard-masyarakat>
+    @elseif (Auth::user()->jabatan == 'petugas' OR Auth::user()->jabatan =='admin')
+        <x-dashboard-admin></x-dashboard-admin>
     @endif
 </div>
 @endsection
