@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CreateLaporan;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -34,5 +35,6 @@ Route::middleware(['auth'])->group(function (){
 
     Route::prefix('dashboard')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');
+        Route::get('/create-laporan', [CreateLaporan::class, 'view'])->name('create-laporan');
     });
 });
