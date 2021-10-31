@@ -6,8 +6,8 @@
         <h1 class="text-xl px-3 py-2">Halaman Dashboard</h1>
     </div>
     <div class="flex flex-row justify-between">
-        <h1 class="text-xl px-3 py-2">Laporan {{ Auth::user()->username }}</h1>
         @if (Auth::user()->jabatan == 'masyarakat')
+        <h1 class="text-xl px-3 py-2">Laporan {{ Auth::user()->username }}</h1>
         <a href=""
             class="bg-purple-500 px-3 py-2 rounded-md transform transition duration-300 hover:bg-purple-600 hover:scale-105">Buat
             laporan</a>
