@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/app.js') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <title>Pengaduan Masyarakat | {{ $title }}</title>
 </head>
 
@@ -38,5 +40,5 @@
         {{ csrf_field() }}
     </form>
 </body>
-
+@stack('javascript')
 </html>
