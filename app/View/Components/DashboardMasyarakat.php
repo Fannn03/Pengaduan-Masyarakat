@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\Laporan;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardMasyarakat extends Component
 {
@@ -28,7 +29,7 @@ class DashboardMasyarakat extends Component
     public function render()
     {
         $data = [
-            'laporan' => Laporan::all()
+            'laporan' => Laporan::where('username', Auth::user()->username)->get()
         ];
         return view('components.dashboard-masyarakat')->with($data);
     }
