@@ -39,11 +39,7 @@ class RegisterController extends Controller
             'same' => 'Data :attribute harus sama dengan :other'
         ];
 
-        $validator = Validator::make($request->all(), $rules, $messages)->validate();
-
-        if (!$validator) {
-            return redirect(route('register'));   
-        }
+        Validator::make($request->all(), $rules, $messages)->validate();
 
         $user = User::create([
             'nama' => $request->nama,
@@ -54,7 +50,7 @@ class RegisterController extends Controller
             'aktivasi' => false,
         ]);
 
-        return redirect(route('login'))->with('register', 'Akun anda berhasil dibuat, silahkan cek email anda untuk aktivasi akun');
+        return redirect()->route('login')->with('register', 'Akun anda berhasil dibuat, silahkan cek email anda untuk aktivasi akun');
 
     }
 }
