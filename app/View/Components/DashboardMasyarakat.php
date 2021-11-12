@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Laporan;
 use Illuminate\View\Component;
 
 class DashboardMasyarakat extends Component
@@ -11,9 +12,12 @@ class DashboardMasyarakat extends Component
      *
      * @return void
      */
+
+    // public $laporan;
+
     public function __construct()
     {
-        //
+        // $this->laporan = Laporan::all();
     }
 
     /**
@@ -23,6 +27,9 @@ class DashboardMasyarakat extends Component
      */
     public function render()
     {
-        return view('components.dashboard-masyarakat');
+        $data = [
+            'laporan' => Laporan::all()
+        ];
+        return view('components.dashboard-masyarakat')->with($data);
     }
 }

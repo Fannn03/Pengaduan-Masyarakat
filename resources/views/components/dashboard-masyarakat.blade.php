@@ -12,17 +12,19 @@
         </tr>
     </thead>
     <tbody class="block md:table-row-group">
+        @foreach ($laporan as $lp)
         <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
             <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">No</span>1</td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Judul laporan</span>Maling Ayam</td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tanggal Laporan</span>Hari ini</td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>Sedang Di Proses</td>
+            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Judul laporan</span>{{ $lp->judul_laporan }}</td>
+            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tanggal Laporan</span>{{ $lp->tanggal_dibuat }}</td>
+            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>{{ $lp->status }}</td>
             <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                 <span class="inline-block w-1/3 md:hidden font-bold">Aksi</span>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
             </td>
-        </tr>		
+        </tr>	
+        @endforeach		
     </tbody>
 </table>
 </div>

@@ -18,7 +18,7 @@ class CreateLaporansTable extends Migration
             $table->string('judul_laporan');
             $table->string('foto_laporan');
             $table->string('nama_pelapor');
-            $table->string('username')->unique();
+            $table->string('username');
             $table->enum('status',[0, 1, 2]);
             $table->longText('isi_laporan');
             $table->date('tanggal_dibuat');
