@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class LaporanController extends Controller
 {
@@ -47,6 +48,7 @@ class LaporanController extends Controller
         Laporan::create([
             'judul_laporan' => $request->judul_laporan,
             'foto_laporan' => $fileName,
+            'slug' => Auth::user()->username . '-' . Str::random(40) . '.' . now(),
             'nama_pelapor' => Auth::user()->nama,
             'username' => Auth::user()->username,
             'status' => 0,
