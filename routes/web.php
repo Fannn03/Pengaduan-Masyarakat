@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::prefix('dashboard')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');
+
         Route::get('/create-laporan', [CreateLaporan::class, 'view'])->name('create-laporan');
+        Route::post('/create-laporan', [CreateLaporan::class, 'store'])->name('create-laporan');
     });
 });
