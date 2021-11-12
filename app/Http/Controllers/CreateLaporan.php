@@ -54,9 +54,9 @@ class CreateLaporan extends Controller
             'tanggal_dibuat' => date(now()),
         ]);
 
-        $path = $request->foto_laporan->storeAs('laporan', $fileName, 'public');
+        $request->foto_laporan->storeAs('laporan', $fileName, 'public');
 
-        return $path;
+        return redirect()->route('index-dashboard')->with('laporan', 'Laporan anda berhasil dikirim, harap menunggu hingga di respond oleh petugas');
 
     }
 
