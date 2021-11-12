@@ -14,14 +14,15 @@ class CreateLaporansTable extends Migration
     public function up()
     {
         Schema::create('laporans', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_laporan');
             $table->string('judul_laporan');
             $table->string('foto_laporan');
             $table->string('nama_pelapor');
-            $table->string('username');
+            $table->string('username')->unique();
+            $table->enum('status',[0, 1, 2]);
             $table->longText('isi_laporan');
             $table->date('tanggal_dibuat');
-            $table->date('tanggal_diedit');
+            $table->date('tanggal_diedit')->nullable();
         });
     }
 
