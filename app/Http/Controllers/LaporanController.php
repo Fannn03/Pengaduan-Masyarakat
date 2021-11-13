@@ -106,7 +106,8 @@ class LaporanController extends Controller
         if (!empty($request->foto_laporan)) {
             
             Storage::delete('public/images/laporan/' . $data->foto_laporan);
-            $fileName = $data->foto_laporan;
+            $extension = $request->foto_laporan->extension();
+            $fileName = Auth::user()->username . "-" . uniqid() . "." . "-" . strtolower(Str::slug($request->judul_laporan, '-')) . "." . $extension;
             $request->foto_laporan->storeAs('images/laporan', $fileName, 'public');
 
         }else{
