@@ -40,5 +40,6 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/create-laporan', [LaporanController::class, 'store'])->name('create-laporan');
 
         Route::get('/edit-laporan/{slug}', [LaporanController::class, 'edit'])->name('edit-laporan');
+        Route::post('/edit-laporan/{slug}', [LaporanController::class, 'update'])->name('edit-laporan');
     });
 });

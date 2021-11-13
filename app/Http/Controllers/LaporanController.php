@@ -43,7 +43,7 @@ class LaporanController extends Controller
         Validator::make($request->all(), $rules, $messages)->validate();
 
         $extension = $request->foto_laporan->extension();
-        $fileName = Auth::user()->username . "-" . uniqid() . "." . "-" . $request->judul_laporan . "." . $extension;
+        $fileName = Auth::user()->username . "-" . uniqid() . "." . "-" . strtolower(Str::slug($request->judul_laporan, '-')) . "." . $extension;
 
         Laporan::create([
             'judul_laporan' => $request->judul_laporan,
@@ -56,9 +56,70 @@ class LaporanController extends Controller
             'tanggal_dibuat' => date(now()),
         ]);
 
-        $request->foto_laporan->storeAs('laporan', $fileName, 'public');
+        $request->foto_laporan->storeAs('images/laporan', $fileName, 'public');
 
         return redirect()->route('index-dashboard')->with('laporan', 'Laporan anda berhasil dikirim, harap menunggu hingga di respond oleh petugas');
+
+    }
+
+    public function edit($slug){
+
+        $getData = Laporan::where('slug', $slug)->first();
+
+        if ($getData == null) {
+            return redirect()->route('index-dashboard');
+        }
+
+        $data = [
+            'laporan' => $getData,
+            'title' => 'Edit Laporan',
+        ];
+        return view('dashboard.edit-laporan')->with($data);
+
+    }
+
+    public function update(Request $request, $slug){
+
+        $rules = [
+            'judul_laporan' => 'required|string|min:5|max:50',
+            'foto_laporan' => 'mimes:png,jpg,jpeg|min:200|max:20000',
+            'isi_laporan' => 'required|string|min:20'
+        ];
+
+        $messages = [
+            'required' => 'Data :attribute tidak boleh kosong.',
+            'string' => 'Data :attribute harus merupakan karakter',
+            'min' => [
+                'string' => 'Data :attribute tidak boleh kurang dari :min karakter',
+                'file' => 'Data :attribute tidak boleh kurang dari :min Kb' 
+            ],
+            'max' => [
+                'string' => 'Data :attribute tidak boleh lebih dari :max karakter',
+                'file' => 'Data :attribute tidak boleh lebih dari :max Kb' 
+            ],
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $data = Laporan::where('slug', $slug)->first();
+
+        if (!empty($request->foto_laporan)) {
+            
+            Storage::delete('public/images/laporan/' . $data->foto_laporan);
+            $fileName = $data->foto_laporan;
+            $request->foto_laporan->storeAs('images/laporan', $fileName, 'public');
+
+        }else{
+            $fileName = $data->foto_laporan;
+        }
+        Laporan::where('slug', $slug)->update([
+            'judul_laporan' => $request->judul_laporan,
+            'foto_laporan' => $fileName,
+            'isi_laporan' =>  $request->isi_laporan,
+            'tanggal_diedit' => date(now())
+        ]);
+
+        return redirect()->route('index-dashboard')->with('laporan', 'Laporan anda berhasil diedit');
 
     }
 
