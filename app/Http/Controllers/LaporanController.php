@@ -124,4 +124,20 @@ class LaporanController extends Controller
 
     }
 
+    public function delete($slug){
+
+        $data = Laporan::where('slug', $slug)->first();
+
+        if ($data == null) {
+            return redirect()->route('index-dashboard');
+        }
+
+        Storage::delete('public/images/laporan/' . $data->foto_laporan);
+
+        Laporan::where('id_laporan', $data->id_laporan)->delete();
+
+        return redirect()->route('index-dashboard')->with('laporan', 'Laporan berhasil di hapus');
+
+    }
+
 }

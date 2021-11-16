@@ -41,5 +41,7 @@ Route::middleware(['auth'])->group(function (){
 
         Route::get('/edit-laporan/{slug}', [LaporanController::class, 'edit'])->name('edit-laporan');
         Route::post('/edit-laporan/{slug}', [LaporanController::class, 'update'])->name('edit-laporan');
+
+        Route::get('/delete-laporan/{slug}', [LaporanController::class, 'delete'])->name('delete-laporan');
     });
 });
